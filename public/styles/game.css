@@ -140,7 +140,7 @@
   height: 80%;
 
   overflow: hidden;
-
+  margin-bottom: 2.5em; /* margin for the bottom cards*/
   display: flex;
   align-items: center;
   justify-content: center;
