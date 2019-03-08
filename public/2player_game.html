@@ -7,6 +7,13 @@
 
     <script src="/scripts/game.js"></script>
     <script src="/scripts/viewUtils.js"></script>
+
+
+	<!-- Disable ENTER to send the form -->
+	<script type="text/javascript">
+		window.addEventListener('keydown',function(e){if(e.keyIdentifier=='U+000A'||e.keyIdentifier=='Enter'||e.keyCode==13){if(e.target.nodeName=='INPUT'&&e.target.type=='text'){e.preventDefault();return false;}}},true);
+	</script>
+
 </head>
 
 <body>
@@ -183,79 +190,14 @@
                     <div style="clear:both"></div>
                 </div>
                 <div id="chatbox">
-                    <table id="ChatTable">
-                        <thead>
-                        <tr>
-                            <td width="20%" ></td>
-                            <td  ></td>
-                        </tr>
-                        </thead>
-                        <tr>
-                            <td class="w3-text-blue w3-tiny" ><b>David: </b></td>
-                            <td >Iorem Ipsum</td>
-                        </tr>
-                        <tr>
-                            <td class="w3-text-red w3-tiny" ><b>Player_2: </b></td>
-                            <td> Iorem Ipsum Neked!!</td>
-                        </tr>
-                        <tr>
-                            <td class="w3-text-blue w3-tiny" ><b>David: </b></td>
-                            <td>Iorem Ipsum</td>
-                        </tr>
-                        <tr>
-                            <td class="w3-text-red w3-tiny" ><b>Player_2: </b></td>
-                            <td>Árvíztűrő tükörfúrógép és Ipsum Ipsum !!</td>
-                        </tr>
-                        <tr>
-                            <td class="w3-text-blue w3-tiny" ><b>David: </b></td>
-                            <td>Iorem Ipsum!</td>
-                        </tr>
-                        <tr>
-                            <td class="w3-text-blue w3-tiny" ><b>David: </b></td>
-                            <td>Iorem Ipsum</td>
-                        </tr>
-                        <tr>
-                            <td class="w3-text-red w3-tiny" ><b>Player_2: </b></td>
-                            <td>Iorem Ipsum Neked!!</td>
-                        </tr>
-                        <tr>
-                            <td class="w3-text-blue w3-tiny" ><b>David: </b></td>
-                            <td>Iorem Ipsum</td>
-                        </tr>
-                        <tr>
-                            <td class="w3-text-red w3-tiny" ><b>Player_2: </b></td>
-                            <td>Árvíztűrő tükörfúrógép és Ipsum Ipsum !!</td>
-                        </tr>
-                        <tr>
-                            <td class="w3-text-blue w3-tiny" ><b>David: </b></td>
-                            <td>Iorem Ipsum!</td>
-                        </tr>
-                        <tr>
-                            <td class="w3-text-blue w3-tiny" ><b>David: </b></td>
-                            <td>Iorem Ipsum</td>
-                        </tr>
-                        <tr>
-                            <td class="w3-text-red w3-tiny" ><b>Player_2: </b></td>
-                            <td>Iorem Ipsum Neked!!</td>
-                        </tr>
-                        <tr>
-                            <td class="w3-text-blue w3-tiny" ><b>David: </b></td>
-                            <td>Iorem Ipsum</td>
-                        </tr>
-                        <tr>
-                            <td class="w3-text-red w3-tiny" ><b>Player_2: </b></td>
-                            <td>Árvíztűrő tükörfúrógép és Ipsum Ipsum !!</td>
-                        </tr>
-                        <tr>
-                            <td class="w3-text-blue w3-tiny" ><b>David: </b></td>
-                            <td>Iorem Ipsum!</td>
-                        </tr>
+                    <table id="ChatTable" width="100%">
+                        
                     </table>
                 </div>
-                <form name="message" action="" >
-                    <input  class="w3-threequarter w3-left-align" name="usermsg" type="text" id="usermsg" size="60" autocomplete="off"  />
+                <form name="message" >
+                    <input  class="w3-threequarter w3-left-align" name="usermsg" type="text" id="usermsg" size="60" autocomplete="off" />
                     <input class="w3-blue w3-button w3-hover-light-blue w3-quarter w3-right w3-tiny "
-                           name="submitmsg" type="button"  id="submitmsg" value="SEND" />
+                           type="button" onclick="handleChatAdd()" id="submitmsg" value="SEND" />
                 </form>
             </div>
         </div>

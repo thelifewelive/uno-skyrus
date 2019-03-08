@@ -320,10 +320,62 @@ const declareRunningColor = function() {
   }).then(() => hidePopUp());
 };
 
+/*
+	This is the chat listener function.
+	It updates the chat panel with the messages.
+*/
+const chatListener = function (document){
+	fetch('/serveChat')
+      .then(response => response.json())
+      .then(chat => {
+        var chatArray = chat;
+		const panel = document.getElementById("ChatTable");
+
+		if(chatArray.length == 0){
+			//No messages yet.
+			panel.innerHTML = '<tr><td style="text-align: center">** No messages yet **</td></tr>';
+		}else{
+			//There is at least one message.
+			var i;
+			var panelHTML = constHTML = '<thead><tr><td width="20%" ></td><td  ></td></tr></thead>';
+			for(i = 0; i < chatArray.length; i++){
+
+				if((i%2) == 0){
+					panelHTML += '<tr><td class="w3-text-blue w3-tiny" ><b>' + chatArray[i].from + ': </b></td><td >' + chatArray[i].msg + '</td></tr>';
+				}else{
+					panelHTML += '<tr><td class="w3-text-red w3-tiny" ><b>' + chatArray[i].from + ': </b></td><td>' + chatArray[i].msg + '</td></tr>';
+				}
+			}
+			panel.innerHTML = panelHTML;
+		}
+      });
+};
+
+const handleChatAdd = function (){
+	var input = document.getElementById('usermsg');
+	var msg = document.getElementById('usermsg').value;
+	if(msg == ""){
+		//Check if the input is empty
+		input.placeholder = "You have to fill the field!";
+	}else{
+		var messageObject = {text: msg};
+		fetch('/addChat',{
+			method: 'post',
+			headers:{
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(messageObject)
+		});
+	}
+	input.value = "";
+};
+
 const initialize = function(document) {
   setInterval(() => {
     getGameStatus(document);
     fetchCards(document);
+
+	chatListener(document);
 
     const pile = document.getElementById('pile');
     pile.setAttribute('ondrop', 'drop(event)');
