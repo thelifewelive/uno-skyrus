@@ -8,7 +8,7 @@ html {
 }
 
 body{
-  background-image: url("back.png");
+  background-image: url("../images/back.png");
   background-color: #436225; /* Used if the image is unavailable */
   background-position: center;
   background-repeat: no-repeat;

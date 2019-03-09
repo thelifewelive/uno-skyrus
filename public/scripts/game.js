@@ -339,12 +339,7 @@ const chatListener = function (document){
 			var i;
 			var panelHTML = constHTML = '<thead><tr><td width="20%" ></td><td  ></td></tr></thead>';
 			for(i = 0; i < chatArray.length; i++){
-
-				if((i%2) == 0){
-					panelHTML += '<tr><td class="w3-text-blue w3-tiny" ><b>' + chatArray[i].from + ': </b></td><td >' + chatArray[i].msg + '</td></tr>';
-				}else{
-					panelHTML += '<tr><td class="w3-text-red w3-tiny" ><b>' + chatArray[i].from + ': </b></td><td>' + chatArray[i].msg + '</td></tr>';
-				}
+					panelHTML += '<tr><td ><b>' + chatArray[i].from + ': </b></td><td >' + chatArray[i].msg + '</td></tr>';
 			}
 			panel.innerHTML = panelHTML;
 		}
