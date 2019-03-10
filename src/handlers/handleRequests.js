@@ -323,7 +323,7 @@ const addChat = function(req, res){
       };
     });
 
-	array.push({from: playerDetails[playerPosition].name, msg: message.text});
+	array.push({from: playerDetails[playerPosition].name, msg: message.text, color: playerPosition});
 	game.setChat(array);
 	res.send(game.getChat());
 };

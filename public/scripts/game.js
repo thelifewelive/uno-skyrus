@@ -339,7 +339,34 @@ const chatListener = function (document){
 			var i;
 			var panelHTML = constHTML = '<thead><tr><td width="20%" ></td><td  ></td></tr></thead>';
 			for(i = 0; i < chatArray.length; i++){
-					panelHTML += '<tr><td ><b>' + chatArray[i].from + ': </b></td><td >' + chatArray[i].msg + '</td></tr>';
+
+					//Make every player name with different color
+					switch(chatArray[i].color){
+						case 0:
+							panelHTML += '<tr><td style="color: blue"><b>' + chatArray[i].from + ': </b></td><td >' + chatArray[i].msg + '</td></tr>';
+							break;
+						case 1:
+							panelHTML += '<tr><td style="color: red"><b>' + chatArray[i].from + ': </b></td><td >' + chatArray[i].msg + '</td></tr>';
+							break;
+						case 2:
+							panelHTML += '<tr><td style="color: green"><b>' + chatArray[i].from + ': </b></td><td >' + chatArray[i].msg + '</td></tr>';
+							break;
+						case 3:
+							panelHTML += '<tr><td style="color: orange"><b>' + chatArray[i].from + ': </b></td><td >' + chatArray[i].msg + '</td></tr>';
+							break;
+						case 4:
+							panelHTML += '<tr><td style="color: sienna"><b>' + chatArray[i].from + ': </b></td><td >' + chatArray[i].msg + '</td></tr>';
+							break;
+						case 5:
+							panelHTML += '<tr><td style="color: indigo"><b>' + chatArray[i].from + ': </b></td><td >' + chatArray[i].msg + '</td></tr>';
+							break;
+						case 6:
+							panelHTML += '<tr><td style="color: darkblue"><b>' + chatArray[i].from + ': </b></td><td >' + chatArray[i].msg + '</td></tr>';
+							break;
+						case 7:
+							panelHTML += '<tr><td style="color: darkslategrey "><b>' + chatArray[i].from + ': </b></td><td >' + chatArray[i].msg + '</td></tr>';
+							break;
+					}
 			}
 			panel.innerHTML = panelHTML;
 		}
