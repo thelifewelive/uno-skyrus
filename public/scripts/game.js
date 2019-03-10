@@ -368,6 +368,7 @@ const chatListener = function (document){
 							break;
 					}
 			}
+			//Update the chat table
 			panel.innerHTML = panelHTML;
 		}
       });
@@ -390,6 +391,11 @@ const handleChatAdd = function (){
 		});
 	}
 	input.value = "";
+	//Go to the end of the chat.
+	setTimeout(function () {
+		var chatBox = document.getElementById('chatbox');
+		chatBox.scrollTop = chatBox.scrollHeight+10;
+    }, 500);
 };
 
 const initialize = function(document) {
