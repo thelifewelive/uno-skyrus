@@ -22,14 +22,16 @@ const {
   catchPlayer,
   loadGame,
   leaveGame,
-  servePlayersCount
+  servePlayersCount,
+  serveChat,
+  addChat
 } = require('./handlers/handleRequests');
 
 const app = express();
 app.games = new Games();
 const options = { extensions: ['html'] };
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(logRequest);
@@ -52,5 +54,8 @@ app.get('/catch', catchPlayer);
 app.get('/leaveGame', leaveGame);
 app.get('/playersCount', servePlayersCount);
 app.use(express.static('public', options));
+
+app.get('/serveChat', serveChat);
+app.post('/addChat', addChat);
 
 module.exports = { app };
