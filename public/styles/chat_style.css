@@ -5,7 +5,9 @@
     padding-bottom:30px;
     background:#EBF4FB;
     width:350px;
-    border:1px solid #2196F3; }
+    border:1px solid #2196F3;
+    box-shadow: 0px 0px 20px black;
+}
 
 
 
