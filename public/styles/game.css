@@ -309,7 +309,7 @@
   position: relative;
   border-radius: 10px;
   width: 30%;
-  height: 50%;
+  height: auto;
   color: black;
   background: white;
 }

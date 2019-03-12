@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="/styles/game.css" />
     <link rel="stylesheet" href="/styles/chat_style.css" />
     <link rel="stylesheet" href="/styles/w3.css">
+    <link rel="stylesheet" href="/styles/scores.css">
 
     <script src="/scripts/game.js"></script>
     <script src="/scripts/viewUtils.js"></script>
@@ -12,10 +13,6 @@
 	<!-- Disable ENTER to send the form -->
 	<script type="text/javascript">
 		window.addEventListener('keydown',function(e){if(e.keyIdentifier=='U+000A'||e.keyIdentifier=='Enter'||e.keyCode==13){if(e.target.nodeName=='INPUT'&&e.target.type=='text'){e.preventDefault();return false;}}},true);
-		var fileref = document.createElement("link");
-        fileref.setAttribute("rel", "stylesheet");
-        fileref.setAttribute("type", "text/css");
-        fileref.setAttribute("href", '/styles/w3.css');
 	</script>
 
 </head>
@@ -182,11 +179,46 @@
     </div>
 
 	<!-- Statistic -->
-    <div class="overlay hidden" id="gameEnd">
-        <div class="win-message">
-            <span id="popupMessage" class="pop-up-message"></span>
-        </div>
-    </div>
+  <div class="overlay " id="gameEnd">
+      <div class="win-message">
+        <img class="backgroundImg" src="/images/logo.png">
+          <span id="popupMessage" class="pop-up-message winMessage">Martin has won the game</span>
+          <table class="score-table">
+
+            <!-- Statistic -->
+            <tr>
+              <td>Pont </td>
+              <td id="score" class="point">50 </td>
+            </tr>
+
+            <tr>
+              <td>legtobb lap a kezedbe </td>
+              <td id="maxCard" class="point">12 </td>
+            </tr>
+
+            <tr>
+              <td>megjatszott lapok szama </td>
+              <td id="throwedCards" class="point">150 </td>
+            </tr>
+
+          </table>
+
+          <!-- Leaderboard -->
+          <table class="score-table leaderboard">
+
+            <tr>
+              <td>1. </td>
+              <td>Kurva</td>
+            </tr>
+
+            <tr>
+              <td>2. </td>
+              <td>Bajler</td>
+            </tr>
+
+          </table>
+      </div>
+  </div>
 
     <div class="w3-round-xlarge">
         <div class=" ChatContainer w3-container w3-left w3-animate-opacity  ">

@@ -112,10 +112,3 @@ input[type=text]{
     background: white;
     color:black;
 }
-
-tr:nth-child(even) {
-
-    background-color: #EBF4FB ;
-}
-
-{}
