@@ -16,6 +16,15 @@ class Player {
     this.canDrawCard = canDrawCard;
     this.unoCallStatus = unoCallStatus;
     this.thrownCards = 0;
+    this.maxCard = 0;
+  }
+
+  getMaxCard(prev) {
+
+    if(prev>this.maxCard) {
+       this.maxCard = prev;
+    }
+    return this.maxCard;
   }
 
   getThrownCards() {

@@ -286,6 +286,7 @@ const displayVictory = function(document, status, playerCards) {
       .then(players => {
           console.log(players);
           document.getElementById('thrownCards').innerHTML = players.playerDetails[players.playerPosition].thrownCards;
+          document.getElementById('maxCard').innerHTML = players.playerDetails[players.playerPosition].maxCard;
       });
 
 

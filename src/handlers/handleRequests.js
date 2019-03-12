@@ -64,7 +64,6 @@ const servePlayerCards = function(req, res) {
   const player = game.getPlayers().getPlayer(id);
   let playableCards = [];
   var score=0;
-
     for(var i =0; i<cards.length;i++) {
       if(cards[i].isReverseCard || cards[i].isSkipCard || cards[i].isDrawTwo){
         console.log(cards[i]);
@@ -204,7 +203,8 @@ const getPlayerNames = (req, res) => {
       name: player.name,
       isCurrent: game.getPlayers().isCurrent(player),
       cardsCount: player.getCardsCount(),
-      thrownCards: player.getThrownCards()
+      thrownCards: player.getThrownCards(),
+      maxCard: player.getMaxCard(player.getCardsCount())
     };
   });
 
