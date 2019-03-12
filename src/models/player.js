@@ -15,7 +15,13 @@ class Player {
     this.playableCards = playableCards;
     this.canDrawCard = canDrawCard;
     this.unoCallStatus = unoCallStatus;
+    this.thrownCards = 0;
   }
+
+  getThrownCards() {
+    return this.thrownCards;
+  }
+
   getCards() {
     return this.cards;
   }

@@ -266,13 +266,29 @@ const disableGameElements = function() {
   stack.setAttribute('draggable', 'false');
 };
 
-const displayVictory = function(document, status) {
-  if (status.hasWon) {
-    document.getElementById('gameEnd').className = 'overlay visible';
-    document.getElementById('popupMessage').innerText = `${
-      status.name
-    } Has Won The Game`;
-  }
+const displayVictory = function(document, status, playerCards) {
+  fetch('/playerCards')
+    .then(response => response.json())
+    .then(cards => {
+      if (status.hasWon) {
+        document.getElementById('gameEnd').className = 'overlay visible';
+        document.getElementById('popupMessage').innerText = `${
+          status.name
+        } Has Won The Game`;
+
+        //show the details
+        document.getElementById('score').innerHTML = cards.score;
+      }
+    });
+
+    fetch('/getPlayerNames')
+      .then(response => response.json())
+      .then(players => {
+          console.log(players);
+          document.getElementById('thrownCards').innerHTML = players.playerDetails[players.playerPosition].thrownCards;
+      });
+
+
 };
 
 const changeGamePage = function(document, playersCount) {
@@ -288,7 +304,7 @@ const getGameStatus = function(document) {
     .then(gameStatus => {
       displayLog(document, gameStatus.gameLog);
       displayTopDiscard(document, gameStatus.topDiscard, gameStatus.isCurrent);
-      displayVictory(document, gameStatus.victoryStatus);
+      displayVictory(document, gameStatus.victoryStatus );
       updateRunningColor(document, gameStatus.runningColor);
       updateSaveStatus(document, gameStatus.saveStatus);
       changeGamePage(document, gameStatus.playersCount);

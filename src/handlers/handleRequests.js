@@ -63,6 +63,51 @@ const servePlayerCards = function(req, res) {
   const cards = game.getPlayerCards(+id);
   const player = game.getPlayers().getPlayer(id);
   let playableCards = [];
+  var score=0;
+
+    for(var i =0; i<cards.length;i++) {
+      if(cards[i].isReverseCard || cards[i].isSkipCard || cards[i].isDrawTwo){
+        console.log(cards[i]);
+        score+=20;
+      } else
+      if(cards[i].isWildCard && !cards[i].isDrawFour) {
+        console.log(cards[i]);
+        score +=50;
+      } else
+      if(cards[i].isDrawFour) {
+        console.log(cards[i]);
+        score +=70;
+      } else
+      switch (cards[i].symbol) {
+        case 1:
+          score+=1;
+          break;
+        case 2:
+          score+=2;
+          break;
+        case 3:
+          score+=3;
+          break;
+        case 4:
+          score+=4;
+          break;
+        case 5:
+          score+=5;
+          break;
+        case 6:
+          score+=6;
+          break;
+        case 7:
+          score+=7;
+          break;
+        case 8:
+          score+=8;
+          break;
+        case 9:
+          score+=9;
+          break;
+      }
+    }
 
   if (
     game
@@ -74,7 +119,8 @@ const servePlayerCards = function(req, res) {
   }
   res.send({
     cards,
-    playableCards
+    playableCards,
+    score
   });
 };
 
@@ -125,6 +171,9 @@ const handleThrowCard = function(req, res) {
 
   const game = req.app.games.getGame(gameKey);
   game.throwCard(id, cardId, calledUno);
+  const player = game.getPlayers().getPlayers();
+  const playerPosition = player.findIndex(player => player.id == id);
+  player[playerPosition].thrownCards++;
   res.end();
 };
 
@@ -154,7 +203,8 @@ const getPlayerNames = (req, res) => {
     return {
       name: player.name,
       isCurrent: game.getPlayers().isCurrent(player),
-      cardsCount: player.getCardsCount()
+      cardsCount: player.getCardsCount(),
+      thrownCards: player.getThrownCards()
     };
   });
 
