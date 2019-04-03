@@ -287,6 +287,18 @@ const displayVictory = function(document, status, playerCards) {
           console.log(players);
           document.getElementById('thrownCards').innerHTML = players.playerDetails[players.playerPosition].thrownCards;
           document.getElementById('maxCard').innerHTML = players.playerDetails[players.playerPosition].maxCard;
+
+          var string = "";
+
+          for(var i = 0; i < players.playerDetails.length; i++){
+
+            string += "<tr><td>" + players.playerDetails[i].name + "</td> <td>" + players.playerDetails[i].score + "</td> </tr>";
+
+
+         }
+
+          document.getElementById('leaderboard').innerHTML = string;
+
       });
 
 
@@ -422,7 +434,7 @@ const initialize = function(document) {
   setInterval(() => {
     getGameStatus(document);
     fetchCards(document);
-	chatListener(document);
+	  chatListener(document);
 
     const pile = document.getElementById('pile');
     pile.setAttribute('ondrop', 'drop(event)');

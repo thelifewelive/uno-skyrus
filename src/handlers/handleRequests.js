@@ -107,7 +107,7 @@ const servePlayerCards = function(req, res) {
           break;
       }
     }
-
+    player.setScore(score);
   if (
     game
       .getPlayers()
@@ -204,13 +204,14 @@ const getPlayerNames = (req, res) => {
       isCurrent: game.getPlayers().isCurrent(player),
       cardsCount: player.getCardsCount(),
       thrownCards: player.getThrownCards(),
-      maxCard: player.getMaxCard(player.getCardsCount())
+      maxCard: player.getMaxCard(player.getCardsCount()),
+      score: player.getScore()
     };
   });
 
   res.send({
     playerDetails,
-    playerPosition
+    playerPosition,
   });
 };
 
@@ -335,6 +336,7 @@ const getSaveStatus = function(game, playerId) {
 const leaveGame = function(req, res) {
   const { gameKey, id } = req.cookies;
   const game = res.app.games.getGame(gameKey);
+
   game.leaveGame(id);
   res.clearCookie('gameKey');
   res.clearCookie('id');

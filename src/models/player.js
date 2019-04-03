@@ -17,6 +17,15 @@ class Player {
     this.unoCallStatus = unoCallStatus;
     this.thrownCards = 0;
     this.maxCard = 0;
+    this.score = 0;
+  }
+
+  setScore(score) {
+    this.score = score;
+  }
+
+  getScore(score) {
+    return this.score;
   }
 
   getMaxCard(prev) {
