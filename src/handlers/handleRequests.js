@@ -63,10 +63,17 @@ const joinGame = function(req, res) {
 const addAi = function(req, res) {
 	const {gameKey, id } = req.cookies;
 	const game = req.app.games.getGame(gameKey);
-	const aiId = generateGameKey();
 
-	const aiNames = ["Pete-AI", "Brendon-AI", "Daniel-AI", "Connor-AI", "Dwayne-AI", "Jack-AI", "Leonidas-AI", "David-AI", "William-AI", "Olivia-AI", "Jessica-AI", "Sophia-AI", "Margaret-AI", "Sarah-AI"];
-	const ai = new Ai(aiNames[Math.floor(Math.random() * 15)], aiId);
+	//Get player names for the ai-id
+	const extractPlayersNames = function(game) {
+    const players = game.getPlayers().getPlayers();
+    return players.map(player => player.getName());
+  };
+  const playersNames = extractPlayersNames(game);
+	const aiID = generateGameKey();
+
+	const aiNames = ["Sarah-Computer", "Jack-Computer", "Paul-Computer", "Olivia-Computer", "Lily-Computer", "Daniel-Computer", "Martin-Computer", "Matthew-Computer", "Adam-Computer", "David-Computer"];
+	const ai = new Ai(aiNames[Math.floor(Math.random() * 10)], aiID);
 	game.addPlayer(ai);
 	res.send({hasGameStarted: game.hasStarted()});
 };

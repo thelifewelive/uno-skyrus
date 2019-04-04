@@ -61,7 +61,7 @@ const leaveGame = function() {
 const addAI = function() {
 
 	fetch('/addAi').then(res => {
-		console.log("Ai added");
+		//console.log("Ai added");
 	});
 
 	document.execCommand('addAI');
