@@ -2,6 +2,7 @@ const fs = require('fs');
 
 const { generateGameKey, writeData, loadData } = require('../utils/util.js');
 const { Player } = require('../models/player');
+const { Ai } = require('../models/ai');
 const { Game } = require('../models/game');
 const { createDeck } = require('../models/deck');
 const { Players } = require('../models/players.js');
@@ -58,17 +59,18 @@ const joinGame = function(req, res) {
   res.send({ hasGameStarted: game.hasStarted() });
 };
 
+//ADD ARTIFICIAL INTELLIGENCE ---------------------
 const addAi = function(req, res) {
 	const {gameKey, id } = req.cookies;
 	const game = req.app.games.getGame(gameKey);
 	const aiId = generateGameKey();
 
 	const aiNames = ["Pete-AI", "Brendon-AI", "Daniel-AI", "Connor-AI", "Dwayne-AI", "Jack-AI", "Leonidas-AI", "David-AI", "William-AI", "Olivia-AI", "Jessica-AI", "Sophia-AI", "Margaret-AI", "Sarah-AI"];
-	//TODO: AI osztály példányosítása
-	const ai = new Player(aiNames[Math.floor(Math.random() * 15)], aiId);
+	const ai = new Ai(aiNames[Math.floor(Math.random() * 15)], aiId);
 	game.addPlayer(ai);
 	res.send({hasGameStarted: game.hasStarted()});
 };
+//------------------------------------------------
 
 const servePlayerCards = function(req, res) {
   const { gameKey, id } = req.cookies;
