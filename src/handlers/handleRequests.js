@@ -77,7 +77,33 @@ const addAi = function(req, res) {
 	game.addPlayer(ai);
 	res.send({hasGameStarted: game.hasStarted()});
 };
+
+const aiListener = function(req, res){
+  const { gameKey, id } = req.cookies;
+  const game = req.app.games.getGame(gameKey);
+  const players = game.getPlayers().getPlayers();
+
+  for(var i = 0; i < players.length; i++){
+    if(players[i].getName().length > 10 && game.getPlayers().isCurrent(players[i])){
+      //TODO: ai moves
+      const ai = players[i];
+      //Check the playable cards
+      if(ai.getPlayableCards().length > 0){
+        //TODO: Throw a card
+        const card = ai.getBestCard();
+        //game.throwCard(ai.getId(), )
+      }else{
+        //TODO: draw a card
+      }
+
+
+    }
+  }
+
+
+};
 //------------------------------------------------
+
 
 const servePlayerCards = function(req, res) {
   const { gameKey, id } = req.cookies;
@@ -396,7 +422,8 @@ module.exports = {
 
   addChat,
   serveChat,
-
-	addAi
-
+//ARTIFICIAL INTELLIGENCE--------------------------
+	addAi,
+  aiListener
+//-------------------------------------------------
 };

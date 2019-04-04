@@ -28,7 +28,8 @@ const {
   addChat,
 
 //CREATE AI CONSTS -------------------------------
-	addAi
+	addAi,
+  aiListener
 //------------------------------------------------
 
 } = require('./handlers/handleRequests');
@@ -62,6 +63,7 @@ app.post('/addChat', addChat);
 
 //ARTIFICIAL INTELLIGENCE METHODS -------------------------
 app.get('/addAi', addAi);
+app.get('/aiListener', aiListener);
 //---------------------------------------------------------
 
 

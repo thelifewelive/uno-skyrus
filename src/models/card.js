@@ -7,6 +7,12 @@ class NumberedCard extends Card {
     this.color = color;
   }
 
+  //score getter -----------------------------------------
+  getScore(){
+    return this.symbol;
+  }
+  //-----------------------------------------------------
+
   canPlayOnTopOf(otherCard, runningColor, hasDrawnTwo, hasDrawnFour) {
     const status =
       hasDrawnTwo &&
@@ -36,6 +42,13 @@ class WildCard extends Card {
     this.isWildCard = true;
     this.isColorDeclared = false;
   }
+  //score getter ----------------------------------
+  getScore(){
+    return 50;
+  }
+
+  //-------------------------------------------------------
+
 
   action(turnDirection, currentPlayerIndex) {
     this.isColorDeclared = false;
@@ -62,6 +75,14 @@ class DrawTwo extends Card {
     this.color = color;
     this.isDrawTwo = true;
   }
+  //score getter ----------------------------------
+  getScore(){
+    return 20;
+  }
+
+  //-------------------------------------------------------
+
+
 
   action(turnDirection, currentPlayerIndex) {
     currentPlayerIndex += turnDirection;
@@ -91,6 +112,13 @@ class SkipCard extends Card {
     this.isSkipCard = true;
     this.symbol = symbol;
   }
+  //score getter ----------------------------------
+  getScore(){
+    return 20;
+  }
+
+  //-------------------------------------------------------
+
 
   action(turnDirection, currentPlayerIndex) {
     currentPlayerIndex += 2 * turnDirection;
@@ -121,6 +149,13 @@ class ReverseCard extends Card {
     this.color = color;
     this.isReverseCard = true;
   }
+  //score getter ----------------------------------
+  getScore(){
+    return 20;
+  }
+
+  //-------------------------------------------------------
+
 
   getColor() {
     return this.color;
@@ -153,6 +188,13 @@ class WildDrawFour extends Card {
     this.isWildCard = true;
     this.isColorDeclared = false;
   }
+  //score getter ----------------------------------
+  getScore(){
+    return 70;
+  }
+
+  //-------------------------------------------------------
+
 
   action(turnDirection, currentPlayerIndex) {
     this.isColorDeclared = false;

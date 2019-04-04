@@ -16,6 +16,18 @@ class Ai {
     this.canDrawCard = canDrawCard;
     this.unoCallStatus = unoCallStatus;
   }
+
+  getBestCard(){
+    var bestCard = this.playableCards[0];
+    for(var i = 1; i < this.playableCards.length; i++){
+      if(this.playableCards[i].getScore() > bestCard.getScore()){
+        bestCard=this.playableCards[i];
+      }
+    }
+    return bestCard;
+  }
+
+
   getCards() {
     return this.cards;
   }

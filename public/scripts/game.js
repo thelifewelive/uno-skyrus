@@ -439,16 +439,21 @@ const handleChatAdd = function (){
 		chatBox.scrollTop = chatBox.scrollHeight+10;
     }, 500);
 };
-//-------------------------------------------------------------------------
+
+const aiListener = function(document){
+  fetch('/aiListener')
+    .then(response => {
+      //console.log("runned");
+    });
+};
 
 const initialize = function(document) {
   setInterval(() => {
     getGameStatus(document);
     fetchCards(document);
 
-	//ADDED THE CHAT LISTENER -------------------------------------------
-	chatListener(document);
-	//-------------------------------------------------------------------
+	   chatListener(document);
+     aiListener(document);
 
     const pile = document.getElementById('pile');
     pile.setAttribute('ondrop', 'drop(event)');
