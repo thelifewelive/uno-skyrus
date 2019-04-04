@@ -24,10 +24,11 @@ const {
   servePlayersCount,
   restrictAccess,
   updateRunningColor,
-
-//CREATE OUR CONSTS -----------------------------
   serveChat,
-  addChat
+  addChat,
+
+//CREATE AI CONSTS -------------------------------
+	addAi
 //------------------------------------------------
 
 } = require('./handlers/handleRequests');
@@ -56,10 +57,12 @@ app.get('/catch', catchPlayer);
 app.get('/leaveGame', leaveGame);
 app.get('/playersCount', servePlayersCount);
 
-//ADD METHODS --------------------------------------
 app.get('/serveChat', serveChat);
 app.post('/addChat', addChat);
-//--------------------------------------------------
+
+//ARTIFICIAL INTELLIGENCE METHODS -------------------------
+app.get('/addAi', addAi);
+//---------------------------------------------------------
 
 
 app.use(restrictAccess);

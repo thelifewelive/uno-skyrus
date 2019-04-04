@@ -34,6 +34,7 @@ const validateGameKey = function(req, res) {
   const games = req.app.games;
   if (!games.doesGameExist(gameKey)) {
     res.send({
+
       doesGameExist: false
     });
     return;
@@ -55,6 +56,18 @@ const joinGame = function(req, res) {
   res.cookie('gameKey', gameKey);
   res.cookie('id', id);
   res.send({ hasGameStarted: game.hasStarted() });
+};
+
+const addAi = function(req, res) {
+	const {gameKey, id } = req.cookies;
+	const game = req.app.games.getGame(gameKey);
+	const aiId = generateGameKey();
+
+	const aiNames = ["Pete-AI", "Brendon-AI", "Daniel-AI", "Connor-AI", "Dwayne-AI", "Jack-AI", "Leonidas-AI", "David-AI", "William-AI", "Olivia-AI", "Jessica-AI", "Sophia-AI", "Margaret-AI", "Sarah-AI"];
+	//TODO: AI osztály példányosítása
+	const ai = new Player(aiNames[Math.floor(Math.random() * 15)], aiId);
+	game.addPlayer(ai);
+	res.send({hasGameStarted: game.hasStarted()});
 };
 
 const servePlayerCards = function(req, res) {
@@ -320,8 +333,6 @@ const updateRunningColor = function(req, res) {
   res.end();
 };
 
-// OUR REQUESTS -------------------------------------------
-
 const addChat = function(req, res){
 	const { gameKey, id } = req.cookies;
     const game = req.app.games.getGame(gameKey);
@@ -353,9 +364,6 @@ const serveChat = function(req, res) {
 };
 
 
-
-//---------------------------------------------------------
-
 module.exports = {
   hostGame,
   validateGameKey,
@@ -377,8 +385,9 @@ module.exports = {
   restrictAccess,
   updateRunningColor,
 
-	//EXPORT OUR REQUESTS
   addChat,
-  serveChat
+  serveChat,
+
+	addAi
 
 };

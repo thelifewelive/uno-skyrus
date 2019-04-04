@@ -57,7 +57,23 @@ const leaveGame = function() {
   });
 };
 
+//ADD ARTIFICIAL INTELLIGENCE AS A COMPUTER TO THE GAME
+const addAI = function() {
+
+	fetch('/addAi').then(res => {
+		console.log("Ai added");
+	});
+
+	document.execCommand('addAI');
+};
+//-----------------------------------------------------
+
 window.onload = () => {
   document.getElementById('copyBtn').onclick = copy;
+
+  //ADDED BUTTON LISTENER ------------------------
+  document.getElementById('addAi').onclick = addAI;
+  //----------------------------------------------
+
   getPlayersStatus(document);
 };
