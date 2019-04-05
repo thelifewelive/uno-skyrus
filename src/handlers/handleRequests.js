@@ -78,6 +78,19 @@ const addAi = function(req, res) {
 	res.send({hasGameStarted: game.hasStarted()});
 };
 
+const removeAi = function(req, res) {
+	const { gameKey, id } = req.cookies;
+  const game = res.app.games.getGame(gameKey);
+	const players = game.getPlayers().getPlayers();
+	for(var i = players.length-1; i != 0; i--){
+		if(players[i].getName().length > 10){
+			game.leaveGame(players[i].getId());
+			break;
+		}
+	}
+	res.end();
+};
+
 const aiListener = function(req, res){
   const { gameKey, id } = req.cookies;
   const game = req.app.games.getGame(gameKey);
@@ -95,12 +108,9 @@ const aiListener = function(req, res){
       }else{
         //TODO: draw a card
       }
-
-
     }
   }
-
-
+	res.end();
 };
 //------------------------------------------------
 
@@ -424,6 +434,7 @@ module.exports = {
   serveChat,
 //ARTIFICIAL INTELLIGENCE--------------------------
 	addAi,
+	removeAi,
   aiListener
 //-------------------------------------------------
 };

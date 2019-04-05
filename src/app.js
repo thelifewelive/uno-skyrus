@@ -29,6 +29,7 @@ const {
 
 //CREATE AI CONSTS -------------------------------
 	addAi,
+	removeAi,
   aiListener
 //------------------------------------------------
 
@@ -64,6 +65,7 @@ app.post('/addChat', addChat);
 //ARTIFICIAL INTELLIGENCE METHODS -------------------------
 app.get('/addAi', addAi);
 app.get('/aiListener', aiListener);
+app.get('/removeAI', removeAi);
 //---------------------------------------------------------
 
 

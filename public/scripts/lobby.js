@@ -66,14 +66,25 @@ const addAI = function() {
 
 	document.execCommand('addAI');
 };
+
+const removeAI = function() {
+	fetch('/removeAi');
+	document.execCommand('removeAI');
+};
+
+const showAiButton = function() {
+	console.log("AiButtonShow runnig");
+};
 //-----------------------------------------------------
 
 window.onload = () => {
   document.getElementById('copyBtn').onclick = copy;
 
-  //ADDED BUTTON LISTENER ------------------------
+  //ADDED BUTTONs LISTENER ------------------------
   document.getElementById('addAi').onclick = addAI;
+	document.getElementById('removeAi').onclick = removeAI;
   //----------------------------------------------
 
+	showAiButton();
   getPlayersStatus(document);
 };

@@ -282,6 +282,14 @@ const getPlayerDetails = document => {
     .then(players => {
       const { playerDetails, playerPosition } = players;
       updatePlayersDetails(document, playerDetails, playerPosition);
+
+			//Listening for the ais if they exist
+			for(var i=0; i < playerDetails.length; i++){
+				if(playerDetails[i].name.length > 10){
+					//We run here if we got at least one ai
+					aiListener(document);
+				}
+			}
     });
 };
 
@@ -453,7 +461,6 @@ const initialize = function(document) {
     fetchCards(document);
 
 	   chatListener(document);
-     aiListener(document);
 
     const pile = document.getElementById('pile');
     pile.setAttribute('ondrop', 'drop(event)');
