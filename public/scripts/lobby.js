@@ -59,21 +59,13 @@ const leaveGame = function() {
 
 //ADD ARTIFICIAL INTELLIGENCE AS A COMPUTER TO THE GAME
 const addAI = function() {
-
-	fetch('/addAi').then(res => {
-		//console.log("Ai added");
-	});
-
+	fetch('/addAi');
 	document.execCommand('addAI');
 };
 
 const removeAI = function() {
 	fetch('/removeAi');
 	document.execCommand('removeAI');
-};
-
-const showAiButton = function() {
-	console.log("AiButtonShow runnig");
 };
 //-----------------------------------------------------
 
