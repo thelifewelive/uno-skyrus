@@ -76,7 +76,5 @@ window.onload = () => {
   document.getElementById('addAi').onclick = addAI;
 	document.getElementById('removeAi').onclick = removeAI;
   //----------------------------------------------
-
-	showAiButton();
   getPlayersStatus(document);
 };

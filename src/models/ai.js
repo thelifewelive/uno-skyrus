@@ -86,6 +86,10 @@ class Ai {
     });
   }
 
+	throwCard(card) {
+		
+	}
+
 
   hasWon() {
     if (!this.cards.length) {
