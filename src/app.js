@@ -28,7 +28,8 @@ const {
   addChat,
 
 //CREATE AI CONSTS -------------------------------
-	addAi,
+	addAiEasy,
+	addAiHard,
 	removeAi,
   aiListener
 //------------------------------------------------
@@ -63,11 +64,11 @@ app.get('/serveChat', serveChat);
 app.post('/addChat', addChat);
 
 //ARTIFICIAL INTELLIGENCE METHODS -------------------------
-app.get('/addAi', addAi);
+app.get('/addAiEasy', addAiEasy);
+app.get('/addAiHard', addAiHard);
 app.get('/aiListener', aiListener);
 app.get('/removeAI', removeAi);
 //---------------------------------------------------------
-
 
 app.use(restrictAccess);
 

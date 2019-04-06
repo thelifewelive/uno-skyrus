@@ -2,7 +2,10 @@ const fs = require('fs');
 
 const { generateGameKey, writeData, loadData } = require('../utils/util.js');
 const { Player } = require('../models/player');
-const { Ai } = require('../models/ai');
+
+const { EasyAi } = require('../models/EasyAi');
+const { HardAi } = require('../models/HardAi');
+
 const { Game } = require('../models/game');
 const { createDeck } = require('../models/deck');
 const { Players } = require('../models/players.js');
@@ -60,7 +63,7 @@ const joinGame = function(req, res) {
 };
 
 //ADD ARTIFICIAL INTELLIGENCE ---------------------
-const addAi = function(req, res) {
+const addAiEasy = function(req, res) {
 	const {gameKey, id } = req.cookies;
 	const game = req.app.games.getGame(gameKey);
 
@@ -73,7 +76,25 @@ const addAi = function(req, res) {
 	const aiID = generateGameKey();
 
 	const aiNames = ["Sarah-Computer", "Jack-Computer", "Paul-Computer", "Olivia-Computer", "Lily-Computer", "Daniel-Computer", "Martin-Computer", "Matthew-Computer", "Adam-Computer", "David-Computer"];
-	const ai = new Ai(aiNames[Math.floor(Math.random() * 10)], aiID);
+	const ai = new EasyAi(aiNames[Math.floor(Math.random() * 10)], aiID, game);
+	game.addPlayer(ai);
+	res.send({hasGameStarted: game.hasStarted()});
+};
+
+const addAiHard = function(req, res) {
+	const {gameKey, id } = req.cookies;
+	const game = req.app.games.getGame(gameKey);
+
+	//Get player names for the ai-id
+	const extractPlayersNames = function(game) {
+    const players = game.getPlayers().getPlayers();
+    return players.map(player => player.getName());
+  };
+  const playersNames = extractPlayersNames(game);
+	const aiID = generateGameKey();
+
+	const aiNames = ["Sarah-Computer", "Jack-Computer", "Paul-Computer", "Olivia-Computer", "Lily-Computer", "Daniel-Computer", "Martin-Computer", "Matthew-Computer", "Adam-Computer", "David-Computer"];
+	const ai = new HardAi(aiNames[Math.floor(Math.random() * 10)], aiID, game);
 	game.addPlayer(ai);
 	res.send({hasGameStarted: game.hasStarted()});
 };
@@ -98,18 +119,11 @@ const aiListener = function(req, res){
 
   for(var i = 0; i < players.length; i++){
     if(players[i].getName().length > 10 && game.getPlayers().isCurrent(players[i])){
-      //TODO: ai moves
-      const ai = players[i];
-      //Check the playable cards
-      if(ai.getPlayableCards().length > 0){
-        //TODO: Throw a card
-        const card = ai.getBestCard();
-        //game.throwCard(ai.getId(), )
-      }else{
-        //TODO: draw a card
-      }
+			const ai = players[i];
+			ai.move();
     }
   }
+
 	res.end();
 };
 //------------------------------------------------
@@ -433,7 +447,8 @@ module.exports = {
   addChat,
   serveChat,
 //ARTIFICIAL INTELLIGENCE--------------------------
-	addAi,
+	addAiEasy,
+	addAiHard,
 	removeAi,
   aiListener
 //-------------------------------------------------

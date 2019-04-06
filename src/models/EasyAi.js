@@ -1,7 +1,8 @@
-class Ai {
+class EasyAi {
   constructor(
     name,
     id,
+		game,
     cards = [],
     playableCards = [],
     canDrawCard = true,
@@ -15,7 +16,33 @@ class Ai {
     this.playableCards = playableCards;
     this.canDrawCard = canDrawCard;
     this.unoCallStatus = unoCallStatus;
+		this.game = game;
   }
+
+	/*
+		The main function of the ai.
+		Everything here will be running on the server
+		if the ai is on the turn.
+	*/
+	move(){
+
+		//TODO: write the easy ai behavior
+
+	}
+
+	/*
+		This function makes the ai throw a card.
+	*/
+	throwCard(card, uno){
+		this.game.aiThrowCard(this, card, uno);
+	}
+
+	/*
+		This function makes the ai to draw cards.
+	*/
+	drawCard(){
+		this.game.aiDrawCards(this);
+	}
 
   getBestCard(){
     var bestCard = this.playableCards[0];
@@ -26,7 +53,6 @@ class Ai {
     }
     return bestCard;
   }
-
 
   getCards() {
     return this.cards;
@@ -51,9 +77,66 @@ class Ai {
   getCardsCount() {
     return this.cards.length;
   }
-  removeCard(cardId) {
-    this.cards.splice(cardId, 1);
+
+	equalCards(card1, card2){
+		const type1 = card1.constructor.name;
+		const type2 = card2.constructor.name;
+		//If the class names are same
+		if(type1 == type2){
+			//If both wild card
+			if(type1 == "WildCard"){
+				return true;
+			}
+			//If both draw four
+			if(type1 == "WildDrawFour"){
+				return true;
+			}
+			//If both draw Draw
+			if(type1 == "DrawTwo"){
+				if(card1.getColor() == card2.getColor()){
+					return true;
+				}
+				return false;
+			}
+			//If both skip
+			if(type1 == "SkipCard"){
+				if(card1.getColor() == card2.getColor()){
+					return true;
+				}
+				return false;
+			}
+			//If both reverse
+			if(type1 == "ReverseCard"){
+				if(card1.getColor() == card2.getColor()){
+					return true;
+				}
+				return false;
+			}
+			//If both numbered
+			if(type1 == "NumberedCard"){
+				if(card1.getColor() == card2.getColor()){
+					if(card1.getScore() == card2.getScore()){
+						return true;
+					}else{
+						return false;
+					}
+				}
+			}
+		}else{
+			return false;
+		}
+	}
+
+  removeCard(card) {
+    const temp = [];
+		for(var i = 0; i < this.cards.length; i++){
+			if(!this.equalCards(this.cards[i], card)){
+				temp.push(this.cards[i]);
+			}
+		}
+		this.cards = temp;
   }
+
   getId() {
     return this.id;
   }
@@ -85,11 +168,6 @@ class Ai {
       );
     });
   }
-
-	throwCard(card) {
-		
-	}
-
 
   hasWon() {
     if (!this.cards.length) {
@@ -128,4 +206,4 @@ class Ai {
   }
 }
 
-module.exports = { Ai };
+module.exports = { EasyAi };

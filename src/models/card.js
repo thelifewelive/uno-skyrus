@@ -116,7 +116,6 @@ class SkipCard extends Card {
   getScore(){
     return 20;
   }
-
   //-------------------------------------------------------
 
 

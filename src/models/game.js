@@ -40,13 +40,9 @@ class Game {
     this.cardsToDraw = 1;
     this.hasDrawnTwo = true;
     this.hasDrawnFour = true;
-
-	//STRING ARRAY FORM MESSAGES -----------------------------
-	this.chat = [];
-	//--------------------------------------------------------
+		this.chat = [];
   }
 
-  //CHAT METHODS ---------------------------------------------
   getChat(){
 	return this.chat;
   }
@@ -54,7 +50,6 @@ class Game {
   setChat(newchat){
 	this.chat = newchat;
   }
-  //----------------------------------------------------------
 
   updateSaveStatus() {
     this.saveStatus.status = true;
@@ -124,6 +119,37 @@ class Game {
     this.updatePlayer(thrownCard);
   }
 
+	//ARTIFICIAL INTELLIGENCE --------------------------------
+
+	aiThrowCard(ai, card, unoCallStatus){
+		this.runningColor = card.color;
+		const aiName = ai.getName();
+
+		if (card.isDrawTwo) {
+      const gain = increaseGain(this.cardsToDraw);
+      this.hasDrawnTwo = false;
+      this.cardsToDraw = this.cardsToDraw + gain;
+    }
+
+    if (card.isDrawFour) {
+      this.hasDrawnFour = false;
+      this.cardsToDraw = 4;
+    }
+
+		ai.resetHasCaught();
+		ai.removeCard(card);
+		this.pile.push(card);
+		ai.setUnoCall(unoCallStatus);
+		this.activityLog.logThrowCard(aiName, card);
+		if(ai.getUnoCallStatus()){
+			this.activityLog.logCallUno(aiName);
+		}
+
+		this.updatePlayer(card);
+	}
+
+	//--------------------------------------------------------
+
   updatePlayer(thrownCard) {
     this.players.updateCurrentPlayer(thrownCard);
     this.updatePlayableCards();
@@ -176,6 +202,50 @@ class Game {
     this.players.setCurrentPlayer();
     this.updatePlayableCards();
   }
+
+	aiDrawCards (ai) {
+		const aiName = ai.getName();
+		const drawnCards = this.stack.splice(-this.cardsToDraw);
+
+		ai.resetHasCaught();
+		ai.resetUnoCall();
+		ai.addCards(drawnCards);
+		ai.setDrawCardStatus(false);
+
+		ai.setPlayableCards([]);
+		this.activityLog.logDrawCards(aiName, drawnCards.length);
+
+		if(this.cardsToDraw != 1) {
+			this.cardsToDraw = 1;
+			this.hasDrawnTwo = true;
+			this.hasDrawnFour = true;
+			this.getPlayers().changeTurn();
+			this.updatePlayableCards();
+			return [];
+		}
+
+		const playableCards = ai.getPlayableCards();
+		const normalPlayableCards = playableCards.filter(card => !card.isDrawFour);
+    const hasNoNormalPlayableCards = normalPlayableCards.length === 0;
+
+		const isPlayable = drawnCards[0].canPlayOnTopOf(
+			this.getTopDiscard(),
+      this.runningColor,
+      this.hasDrawnTwo,
+      this.hasDrawnFour,
+      hasNoNormalPlayableCards
+		);
+
+		if(isPlayable){
+			ai.setPlayableCards(drawnCards);
+      return drawnCards;
+		}
+
+		this.getPlayers().changeTurn();
+    this.updatePlayableCards();
+    return [];
+
+	}
 
   drawCards(playerId) {
     const currentPlayer = this.players.getCurrentPlayer();

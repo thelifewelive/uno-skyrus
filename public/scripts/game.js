@@ -460,7 +460,7 @@ const initialize = function(document) {
     getGameStatus(document);
     fetchCards(document);
 
-	   chatListener(document);
+	  chatListener(document);
 
     const pile = document.getElementById('pile');
     pile.setAttribute('ondrop', 'drop(event)');
