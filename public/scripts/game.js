@@ -290,9 +290,22 @@ const displayVictory = function(document, status, playerCards) {
 
           var string = "";
 
+					players.playerDetails.sort(function(a, b){
+						return a.score - b.score
+					});
+
           for(var i = 0; i < players.playerDetails.length; i++){
 
-            string += "<tr><td>" + players.playerDetails[i].name + "</td> <td>" + players.playerDetails[i].score + "</td> </tr>";
+						if(i==0){
+							string += "<tr><td>🥇  " + players.playerDetails[i].name + "</td> <td>" + players.playerDetails[i].score + "</td> </tr>";
+						}else if(i==1){
+							string += "<tr><td>🥈  " + players.playerDetails[i].name + "</td> <td>" + players.playerDetails[i].score + "</td> </tr>";
+						}else if(i==2){
+							string += "<tr><td>🥉  " + players.playerDetails[i].name + "</td> <td>" + players.playerDetails[i].score + "</td> </tr>";
+						}else{
+							string += "<tr><td>👤  " + players.playerDetails[i].name + "</td> <td>" + players.playerDetails[i].score + "</td> </tr>";
+						}
+
 
 
          }
