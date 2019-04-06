@@ -284,7 +284,7 @@ const displayVictory = function(document, status, playerCards) {
     fetch('/getPlayerNames')
       .then(response => response.json())
       .then(players => {
-          console.log(players);
+          //console.log(players);
           document.getElementById('thrownCards').innerHTML = players.playerDetails[players.playerPosition].thrownCards;
           document.getElementById('maxCard').innerHTML = players.playerDetails[players.playerPosition].maxCard;
 
@@ -305,16 +305,9 @@ const displayVictory = function(document, status, playerCards) {
 						}else{
 							string += "<tr><td>👤  " + players.playerDetails[i].name + "</td> <td>" + players.playerDetails[i].score + "</td> </tr>";
 						}
-
-
-
          }
-
           document.getElementById('leaderboard').innerHTML = string;
-
       });
-
-
 };
 
 const changeGamePage = function(document, playersCount) {
