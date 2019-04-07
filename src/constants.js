@@ -8,7 +8,13 @@ const URLS = [
   '/images/back.png',
   '/images/logo.png',
   '/scripts/game.js',
-  '/scripts/viewUtils.js'
+  '/scripts/viewUtils.js',
+
+	//leaderboard
+	'/images/first.png',
+	'/images/second.png',
+	'/images/third.png'
+
 ];
 
 module.exports = {URLS};

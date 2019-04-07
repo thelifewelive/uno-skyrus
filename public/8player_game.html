@@ -465,21 +465,14 @@
           </div>
         </div>
       </div>
-      <div class="overlay hidden" id="gameEnd">
-        <div class="win-message">
-          <span id="popupMessage" class="pop-up-message"></span>
-          <div class="exit-btn" onclick="exitToStartGame()">EXIT</div>
-        </div>
-      </div>
+			<!-- Statistic -->
+		  <div class="overlay hidden" id="gameEnd">
+		      <div class="win-message">
+		        <img class="backgroundImg" src="/images/logo.png">
+		          <span id="popupMessage" class="pop-up-message winMessage">Martin has won the game</span>
+		          <table class="score-table">
 
-      <!-- Statistic -->
-      <div class="overlay hidden" id="gameEnd">
-          <div class="win-message">
-            <img class="backgroundImg" src="/images/logo.png">
-              <span id="popupMessage" class="pop-up-message winMessage">Martin has won the game</span>
-              <table class="score-table">
-
-								<!-- Statistic -->
+		            <!-- Statistic -->
 		            <tr>
 		              <td>Score:  </td>
 		              <td id="score" class="point"></td>
@@ -495,16 +488,18 @@
 		              <td id="thrownCards" class="point"></td>
 		            </tr>
 
-              </table>
+		          </table>
 
-              <!-- Leaderboard -->
-              <table class="score-table leaderboard" id="leaderboard">
+		          <!-- Leaderboard -->
+		          <table class="score-table leaderboard" id="leaderboard">
 
 
 
-              </table>
-          </div>
-      </div>
+		          </table>
+		      </div>
+		  </div>
+
+
 
 	  <div class="w3-round-xlarge ">
           <div class=" ChatContainer w3-container w3-left w3-animate-opacity ">
