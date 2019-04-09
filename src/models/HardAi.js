@@ -27,6 +27,27 @@ class HardAi {
 	move(){
 
 		//TODO: write the greedy ai behavior
+    if(this.getPlayableCards().length > 0){
+
+      if(this.cards.length != 1){
+        var card = this.getBestCard();
+        if(card.isWildCard){
+          this.throwWildCard(card, false, this.getBestColor());
+        }else{
+          this.throwCard(card, false);
+        }
+      }else{
+        var card = this.getBestCard();
+        if(card.isWildCard){
+          this.throwWildCard(card, true, this.getBestColor());
+        }else{
+          this.throwCard(card, true);
+        }
+      }
+
+    }else{
+      this.drawCard();
+    }
 
 	}
 
@@ -37,11 +58,15 @@ class HardAi {
 		this.game.aiThrowCard(this, card, uno);
 	}
 
+  throwWildCard(card,uno,color){
+    this.game.aiThrowCard(this, card, uno);
+    this.game.updateRunningColor(this.id, color);
+  }
 	/*
 		This function makes the ai to draw cards.
 	*/
-	drawCard(){
-		this.game.aiThrowCard(this, card, uno);
+  drawCard(){
+		this.game.aiDrawCards(this);
 	}
 
   getBestCard(){
@@ -52,6 +77,26 @@ class HardAi {
       }
     }
     return bestCard;
+  }
+
+  getBestColor(){
+    //red, green, blue, yellow
+    var colors = [0, 0, 0, 0];
+    for(var i = 0; i < this.cards.length; i++){
+      switch(this.cards[i].color){
+        case "red": colors[0]++; break;
+        case "green": colors[1]++; break;
+        case "blue": colors[2]++; break;
+        case "yellow": colors[3]++; break;
+      }
+    }
+    var max = 0;
+    for(var i = 0; i < colors.length; i++){
+      if(colors[i] > max){
+        max = i;
+      }
+    }
+    return colors[max];
   }
 
   getCards() {

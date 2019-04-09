@@ -27,8 +27,43 @@ class EasyAi {
 	move(){
 
 		//TODO: write the easy ai behavior
+    if(this.getPlayableCards().length > 0){
+
+      if(this.cards.length != 1){
+        var card = this.getRandomCard();
+        if(card.isWildCard){
+          this.throwWildCard(card, false, this.getRandomColor());
+        }else{
+          this.throwCard(card, false);
+        }
+      }else{
+        var card = this.getRandomCard();
+        if(card.isWildCard){
+          this.throwWildCard(card, true, this.getRandomColor());
+        }else{
+          this.throwCard(card, true);
+        }
+      }
+
+    }else{
+      this.drawCard();
+    }
 
 	}
+
+  /*
+    This function choose a random card from playable cards.
+  */
+  getRandomCard(){
+    var randomCard = this.playableCards[Math.floor(Math.random() * this.playableCards.length)];
+    return randomCard;
+  }
+
+  getRandomColor(){
+    var colors = ["red", "green", "blue", "yellow"]
+    var randomColor = colors[Math.floor(Math.random() * 4)];
+    return randomColor;
+  }
 
 	/*
 		This function makes the ai throw a card.
@@ -37,22 +72,17 @@ class EasyAi {
 		this.game.aiThrowCard(this, card, uno);
 	}
 
+  throwWildCard(card,uno,color){
+    this.game.aiThrowCard(this, card, uno);
+    this.game.updateRunningColor(this.id, color);
+  }
+
 	/*
 		This function makes the ai to draw cards.
 	*/
 	drawCard(){
 		this.game.aiDrawCards(this);
 	}
-
-  getBestCard(){
-    var bestCard = this.playableCards[0];
-    for(var i = 1; i < this.playableCards.length; i++){
-      if(this.playableCards[i].getScore() > bestCard.getScore()){
-        bestCard=this.playableCards[i];
-      }
-    }
-    return bestCard;
-  }
 
   getCards() {
     return this.cards;

@@ -136,6 +136,7 @@ class Game {
       this.cardsToDraw = 4;
     }
 
+
 		ai.resetHasCaught();
 		ai.removeCard(card);
 		this.pile.push(card);
