@@ -300,14 +300,14 @@ const servePlayersCount = function(req, res) {
 */
 const serveChat = function(req, res) {
 	const { gameKey } = req.cookies;
-    const game = req.app.games.getGame(gameKey);
+  const game = req.app.games.getGame(gameKey);
 	const chat = JSON.stringify(game.getChat());
 	res.send(chat);
 };
 
 const addChat = function(req, res){
 	const { gameKey, id } = req.cookies;
-    const game = req.app.games.getGame(gameKey);
+  const game = req.app.games.getGame(gameKey);
 
 	//Getting the objects
 	const array = game.getChat();
