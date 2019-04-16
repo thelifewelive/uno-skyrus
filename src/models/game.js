@@ -121,7 +121,8 @@ class Game {
 
 	//ARTIFICIAL INTELLIGENCE --------------------------------
 
-	aiThrowCard(ai, card, unoCallStatus){
+	aiThrowCard(aiID, card, unoCallStatus){
+    const ai = this.players.getPlayer(aiID);
 		this.runningColor = card.color;
 		const aiName = ai.getName();
 
@@ -204,7 +205,8 @@ class Game {
     this.updatePlayableCards();
   }
 
-	aiDrawCards (ai) {
+	aiDrawCards(aiID) {
+    const ai = this.players.getPlayer(aiID);
 		const aiName = ai.getName();
 		const drawnCards = this.stack.splice(-this.cardsToDraw);
 

@@ -56,12 +56,12 @@ class HardAi {
 		This function makes the ai to throw a card.
 	*/
 	throwCard(card, uno){
-		this.game.aiThrowCard(this, card, uno);
+		this.game.aiThrowCard(this.id, card, uno);
     this.calculateScore();
 	}
 
   throwWildCard(card,uno,color){
-    this.game.aiThrowCard(this, card, uno);
+    this.game.aiThrowCard(this.id, card, uno);
     this.game.updateRunningColor(this.id, color);
     this.calculateScore();
   }
@@ -69,7 +69,7 @@ class HardAi {
 		This function makes the ai to draw cards.
 	*/
   drawCard(){
-		this.game.aiDrawCards(this);
+		this.game.aiDrawCards(this.id);
     this.calculateScore();
   }
 
