@@ -68,11 +68,9 @@ const addAiEasy = function(req, res) {
 	const game = req.app.games.getGame(gameKey);
 
 	//Get player names for the ai-id
-	const extractPlayersNames = function(game) {
-    const players = game.getPlayers().getPlayers();
-    return players.map(player => player.getName());
-  };
-  const playersNames = extractPlayersNames(game);
+  const players = game.getPlayers().getPlayers();
+	const playersNames = players.map(player => player.getName());
+
 	const aiID = generateGameKey();
 
 	const aiNames = ["Sarah-Computer", "Jack-Computer", "Paul-Computer", "Olivia-Computer", "Lily-Computer", "Daniel-Computer", "Martin-Computer", "Matthew-Computer", "Adam-Computer", "David-Computer"];
@@ -103,12 +101,14 @@ const removeAi = function(req, res) {
 	const { gameKey, id } = req.cookies;
   const game = res.app.games.getGame(gameKey);
 	const players = game.getPlayers().getPlayers();
-	for(var i = players.length-1; i != 0; i--){
+	var i;
+	for(i = players.length-1; i != 0; i--){
 		if(players[i].getName().length > 10){
 			game.leaveGame(players[i].getId());
 			break;
 		}
 	}
+	res.send(players[i].getName() + " named ai has removed");
 	res.end();
 };
 
