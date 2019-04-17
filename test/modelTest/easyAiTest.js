@@ -55,4 +55,19 @@ describe('Easy Ai class', () => {
       }
     });
   });
+  describe('calcualte score', function() {
+    it('should return 0 of easyAi score', function(){
+      const easyAi = new EasyAi("Martin - Computer");
+      const expectedOutput = 0;
+      const actualOutput = easyAi.calculateScore();
+      chai.assert.deepEqual(actualOutput, expectedOutput);
+    });
+    it('should return 1 of easyAi score', function() {
+      const easyAi = new EasyAi("Martin - Computer");
+      easyAi.addCard(new NumberedCard(1, 'blue'));
+      const expectedOutput = 1;
+      const actualOutput = easyAi.calculateScore();
+      chai.assert.deepEqual(actualOutput, expectedOutput);
+    });
+  });
 });

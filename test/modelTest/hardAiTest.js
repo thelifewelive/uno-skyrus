@@ -35,4 +35,19 @@ describe('Hard Ai class', () => {
       chai.assert.deepEqual(actualOutput, expectedOutput);
     });
   });
+  describe('calcualte score', function() {
+    it('should return 0 of hardAi score', function(){
+      const hardAi = new HardAi("Martin - Computer");
+      const expectedOutput = 0;
+      const actualOutput = hardAi.calculateScore();
+      chai.assert.deepEqual(actualOutput, expectedOutput);
+    });
+    it('should return 1 of hardAi score', function() {
+      const hardAi = new HardAi("Martin - Computer");
+      hardAi.addCard(new NumberedCard(1, 'blue'));
+      const expectedOutput = 1;
+      const actualOutput = hardAi.calculateScore();
+      chai.assert.deepEqual(actualOutput, expectedOutput);
+    });
+  });
 });
