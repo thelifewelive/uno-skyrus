@@ -47,10 +47,6 @@
 
 }
 
-#menu {
-
-}
-
 #ChatTable{
     font-size: 10.5px;
 
@@ -71,7 +67,6 @@ tr:nth-child(even) {
     background-color: #EBF4FB ;
 }
 
-{}
 
 .ChatContainer{
   width: 100%;

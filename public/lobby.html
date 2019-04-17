@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
     <title>SKYRUS-UNO</title>
     <script src="/scripts/logger.js"></script>
     <script src="/scripts/lobby.js"></script>
@@ -11,18 +12,16 @@
   <body>
     <main class="lobby">
       <header>
-        <div class="header-inner-div">
+        <div class="header-inner-div"></div>
           <div class="uno-ellipse"><span>UNO</span></div>
-        </div>
-        <div class="header-inner-div">
-          <button class="leave-game-btn" onclick="leaveGame()">
-            Leave Game
-          </button>
-					<button id="addAiEasy">Add Easy Computer</button>
-					<button id="addAiHard">Add Hard Computer</button>
-					<button id="removeAi">Remove computer</button>
-        </div>
+        <div class="header-inner-div"> </div>
       </header>
+       <div class="AI-div">
+          <button class="AI-easy-button mobile-responsivity" id="addAiEasy">Add Easy Computer</button>
+					<button class="AI-hard-button mobile-responsivity" id="addAiHard">Add Hard Computer</button>
+          <button class="AI-rm-button mobile-responsivity" id="removeAi">Remove computer</button>
+          <button class="leave-game-btn mobile-responsivity" onclick="leaveGame()">Leave Game</button>
+       </div>
       <div class="gameKey-container">
         <div>
           Game key : <input id="gameKey" value="__gameKey__" class="gameKey" readonly/>

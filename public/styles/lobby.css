@@ -15,9 +15,168 @@
   position: relative;
 }
 
-.leave-game-btn {
-  position: absolute;
+/*--------------new Buttons, responsivity---------------*/
+.mobile-responsivity{
+   
+    display:block;
+    width:100%!important;
+    text-align:center;
+
 }
+.AI-div{
+  margin-top:5%;
+  position: absolute;
+  float:left;
+  width:9%;
+  height:70%;
+  margin-left:40%;
+  
+}
+@media only screen and (max-width:800px ) and  (orientation:portrait){
+  .AI-div{
+  margin-top:15%;
+  position: absolute;
+  float:left;
+  width:15%;
+  height:50%;
+  margin-left:40%;
+  }
+
+  .uno-ellipse {
+ 
+    background: #d33e32;
+    height: 100%;
+    
+    font-weight: 900;
+    color: #f6db18;
+    text-shadow: -0.5px 0.5px black, -1px 1px black, -1.5px 1.5px black,
+      -2px 2px black, -2.5px 2.5px black, -3px 3px black, -3.5px 3.5px black;
+  }
+}
+
+@media only screen and (max-width:1100px){
+  .leave-game-btn,.AI-hard-button,.AI-easy-button,.AI-rm-button{
+    font-size:75%!important;
+  }
+}
+@media only screen and (max-width:700px){
+  .leave-game-btn,.AI-hard-button,.AI-easy-button,.AI-rm-button{
+    font-size:55%!important;
+  }
+}
+.leave-game-btn {
+  margin-top: 5px;
+ color:#fff!important;
+  background-color:#436225!important;
+  border:1.5px dotted #ffff90;;
+  display:inline-block;
+  padding:3px 3px;
+  vertical-align:middle;
+  overflow:hidden;
+  border-radius: 2px;
+  text-align:center;
+  cursor:pointer;
+  width:100%;
+  font-size:100%;
+  height:20%;
+}
+.leave-game-btn:hover{
+  background-color:#c9ad32!important;
+}
+
+.AI-easy-button{
+  margin-top: 5px;
+ color:#fff!important;
+  background-color:#436225!important;
+  border:1.5px dotted #48ff00;
+  display:inline-block;
+  padding:3px 3px;
+  vertical-align:middle;
+  overflow:hidden;
+  border-radius: 2px;
+  text-align:center;
+  cursor:pointer;
+  width:100%;
+  font-size:100%;
+  height:20%;
+}
+.AI-easy-button:hover{
+ background-color: #4CAF50!important;
+}
+.AI-hard-button{
+  margin-top: 5px;
+  color:#fff!important;
+  background-color:#436225!important;
+  border:1.5px dotted red;
+  display:inline-block;
+  padding:3px 3px;
+  vertical-align:middle;
+  overflow:hidden;
+  border-radius: 2px;
+  text-align:center;
+  cursor:pointer;
+  width:100%;
+  font-size:100%;
+  height:20%;
+}
+.AI-hard-button:hover{
+  background-color: rgb(206, 71, 71)!important;
+ }
+.AI-rm-button{
+  margin-top: 5px;
+  color:#fff!important;
+  background-color:#436225!important;
+  border:1.5px dotted gray;
+  display:inline-block;
+  padding:3px 3px;
+  vertical-align:middle;
+  overflow:hidden;
+  border-radius: 2px;
+  text-align:center;
+  cursor:pointer;
+  width:100%;
+  font-size:100%;
+  height:20%;
+}
+.AI-rm-button:hover{
+  background-color: rgb(114, 114, 114)!important;
+ }
+ @media only screen and (max-width:1000px){
+  .gameKey-container {
+  height: 10%;
+  width: 100%;
+
+  font-size: 15px;
+  font-family: sans-serif;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  }
+}
+@media only screen and (max-width: 1110px) {
+  .uno-ellipse {
+    margin-top:0.2em;
+    position: relative;
+    background: #d33e32;
+    height: 100%;
+    width:16%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(-30deg);
+    font-family: serif;
+    font-size: 120%;
+    font-weight: 900;
+    color: #f6db18;
+    text-shadow: -0.5px 0.5px black, -1px 1px black, -1.5px 1.5px black,
+      -2px 2px black, -2.5px 2.5px black, -3px 3px black, -3.5px 3.5px black;
+  }
+
+}
+/*--------------------------/*
 
 /* Game Key container styles*/
 .gameKey-container {
@@ -81,8 +240,9 @@
 
 .header-inner-div {
   display: flex;
+  margin-bottom:1%;
   justify-content: flex-end;
-  width: 50%;
+  width: 60%;
   height: 100%;
 }
 
