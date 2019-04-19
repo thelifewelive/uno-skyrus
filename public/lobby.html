@@ -22,6 +22,7 @@
 					<button class="AI-hard-button mobile-responsivity" id="addAiHard">Add Hard Computer</button>
           <button class="AI-rm-button mobile-responsivity" id="removeAi">Remove computer</button>
           <button class="leave-game-btn mobile-responsivity" onclick="leaveGame()">Leave Game</button>
+          <button class="notification-btn" onclick ="changeVisibility()">Notifications OFF/ON</button>
        </div>
      <!------------------------------------------------------------------>
       <div class="gameKey-container">
@@ -33,8 +34,10 @@
           Waiting for all players to join...
         </div>
         <div class="status-bar" id="statusBar"></div>
-
+        <!-------------add snackbar -------------------->
+        <div class="snackbar" id="snackBar"></div>
       </div>
+
 
       <div id="players" class="players-container"></div>
     </main>

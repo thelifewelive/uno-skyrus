@@ -31,6 +31,22 @@ const showStatus = function(document, log) {
   document.getElementById('statusBar').appendChild(status);
 };
 
+/*--------selected logs for the notif.bar--------------*/
+const snackB = function (document,log) {
+  const snackStatus = generateLogForSnack(log);
+  document.getElementById('snackBar').innerHTML='';
+  document.getElementById('snackBar').appendChild(snackStatus);
+};
+function changeVisibility() {
+  var s = document.getElementById("snackBar");
+  if (s.style.display === "none") {
+      s.style.display = "block";
+  }   
+      else {
+      s.style.display = "none";
+      } 
+}
+/*-----------------------------------------------*/
 const getPlayersStatus = function(document) {
   setInterval(() => {
     fetch('/playersStatus')
@@ -47,6 +63,8 @@ const getPlayersStatus = function(document) {
           json.playersDetails.playersNames
         );
         showStatus(document, json.status);
+        /*-------------add the SnackB------------*/
+        snackB(document,json.status);   
       });
   }, 1000);
 };

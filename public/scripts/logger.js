@@ -1,4 +1,17 @@
-/* eslint-disable no-unused-vars */
+
+/*----join,leave,start logs  for the snackbar------*/
+const generateLogForSnack = function(log){
+  const logOptionsSnack = {
+    'join-game': logJoinGame,
+    'leave-game': logLeaveGame,
+    'start-game':logStartGame
+  };
+
+  console.log(log.action);
+  return logOptionsSnack[log.action](log);
+
+};
+/*-------------------------------------*/
 const generateStatusLog = function(log) {
   const logOptions = {
     'start-game': logStartGame,
