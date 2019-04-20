@@ -145,7 +145,7 @@
   height: 10%;
   width: 100%;
 
-  font-size: 15px;
+  font-size: 13px!important;
   font-family: sans-serif;
 
   display: flex;
@@ -255,10 +255,31 @@
   justify-content: center;
   transform: rotate(-30deg);
   font-family: serif;
-  font-size: 220%;
+  font-size: 190%;
   font-weight: 900;
   color: #f6db18;
   text-shadow: -0.5px 0.5px black, -1px 1px black, -1.5px 1.5px black,
     -2px 2px black, -2.5px 2.5px black, -3px 3px black, -3.5px 3.5px black;
 }
 /*----------------------------*/
+/*--------responsivity for the uno ellipse-------*/
+@media only screen and (max-width: 1110px) and (orientation:landscape){
+  .uno-ellipse {
+    margin-top:0.2em;
+    position:static;
+    background: #d33e32;
+    height: 105%;
+    width:20%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(0deg);
+    font-family: serif;
+    font-size: 130%;
+    font-weight: 900;
+    color: #f6db18;
+    text-shadow: -0.5px 0.5px black, -1px 1px black, -1.5px 1.5px black,
+      -2px 2px black, -2.5px 2.5px black, -3px 3px black, -3.5px 3.5px black;
+  }
+}
